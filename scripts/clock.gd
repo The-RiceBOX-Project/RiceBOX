@@ -1,6 +1,6 @@
 extends Label
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var hour = Time.get_datetime_dict_from_system().hour
 	var mins = Time.get_datetime_dict_from_system().minute
 	if hour < 10:

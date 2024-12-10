@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=14 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Texture2D" uid="uid://cspnnapkvvwxk" path="res://assets/natoncho_jde_mnogo_oriz_zashtoto_e_natoncho.jpg" id="1_3sfrn"]
 [ext_resource type="Texture2D" uid="uid://bmr4auwdjkki2" path="res://assets/power-button.png" id="1_7vodn"]
@@ -13,6 +13,44 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
 atlas = ExtResource("6_ly5v0")
 region = Rect2(227.9, 0, 183.1, 131.62)
+
+[sub_resource type="Animation" id="Animation_683q3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(445, 92)]
+}
+
+[sub_resource type="Animation" id="Animation_jlpgg"]
+resource_name = "slide"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(445, 92), Vector2(89, 92)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bq4q2"]
+_data = {
+"RESET": SubResource("Animation_683q3"),
+"slide": SubResource("Animation_jlpgg")
+}
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -95,19 +133,20 @@ ignore_texture_size = true
 stretch_mode = 0
 flip_h = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Game_select"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 240.0
-offset_right = 1088.0
-offset_bottom = 536.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Game_select/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Game_select"]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
+offset_left = 445.0
+offset_top = 92.0
+offset_right = 1071.0
+offset_bottom = 348.0
 size_flags_horizontal = 3
 theme_override_constants/separation = 100
-alignment = 1
+
+[node name="Slide" type="AnimationPlayer" parent="Game_select"]
+libraries = {
+"": SubResource("AnimationLibrary_bq4q2")
+}
 
 [node name="Game_details" type="Panel" parent="."]
 visible = false

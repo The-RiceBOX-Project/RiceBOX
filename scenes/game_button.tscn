@@ -1,16 +1,114 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfsf2f6khabl7"]
+[gd_scene load_steps=7 format=3 uid="uid://dfsf2f6khabl7"]
 
 [ext_resource type="Script" path="res://scripts/game_button.gd" id="1_5ortt"]
-[ext_resource type="Texture2D" uid="uid://c7u7anjsllbpo" path="res://mnt/not_the_fish/icon.png" id="1_c65cn"]
+[ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="1_c65cn"]
+
+[sub_resource type="Animation" id="Animation_vrjdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_km31g"]
+resource_name = "appear"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.501961)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_6b18p"]
+resource_name = "unselect"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.501961)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.6, 0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wcqki"]
+_data = {
+"RESET": SubResource("Animation_vrjdx"),
+"appear": SubResource("Animation_km31g"),
+"unselect": SubResource("Animation_6b18p")
+}
 
 [node name="Game_Button" type="TextureButton"]
 custom_minimum_size = Vector2(256, 256)
 offset_right = 256.0
 offset_bottom = 256.0
+pivot_offset = Vector2(128, 128)
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("1_c65cn")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("1_5ortt")
+
+[node name="Selection" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wcqki")
+}
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
