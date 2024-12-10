@@ -6,8 +6,13 @@ extends Panel
 @onready var game_creators = $Creators
 @onready var download_or_update_button = $Download_or_Update
 @onready var delete_button = $Delete
+var version_num = 0
 @onready var executeable = ''
 var game_dir_path = ''
+var games_dir = "games"
+var mnt_dir = "mnt"
+var _is_on_usb = false
+
 
 @onready var games_list = get_node("../Game_select")
 
@@ -24,14 +29,18 @@ func _on_game_selected(game_path, is_on_usb):
 	game_description.text = manifest_json.description
 	game_version.text = manifest_json.version_display
 	game_creators.text = manifest_json.creators
+	version_num = manifest_json.version
 	
 	if is_on_usb:
 		download_or_update_button.text = "Download"
+		_is_on_usb = true
 		delete_button.hide()
 	else:
+		_is_on_usb = false
 		delete_button.show()
 		download_or_update_button.text = "Update"
-
+	
+	
 	games_list.hide()
 	show()
 
@@ -47,4 +56,16 @@ func _on_run_pressed() -> void:
 
 func _on_delete_pressed() -> void:
 	OS.execute("rm", ["-rf", game_dir_path])
+	_on_back_pressed()
+
+
+func _on_download_or_update_pressed() -> void:
+	var game_dir_name = ''
+	if _is_on_usb:
+		game_dir_name = game_dir_path.lstrip(mnt_dir)
+	else:
+		game_dir_name = game_dir_path.lstrip(games_dir)
+	print(game_dir_name)
+	print(["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
+	OS.execute("cp", ["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	_on_back_pressed()
