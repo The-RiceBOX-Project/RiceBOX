@@ -43,6 +43,11 @@ func add_buttons() -> void:
 		game_num += 1
 	
 	for game in DirAccess.get_directories_at(mnt_folder):
+		for game_on_disk in game_buttons.get_children():
+			if game_on_disk.game_path.lstrip('games/') == game:
+				game_on_disk.has_an_update = true
+				return
+		
 		var node = Game_button.instantiate()
 		node.game_path = mnt_folder + "/" + game
 		node.is_on_usb = true

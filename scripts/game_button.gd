@@ -2,12 +2,15 @@ extends TextureButton
 
 var game_number: int
 @export var game_path : String
+@export var game_name : String
 @export var is_on_usb = false
+var has_an_update = false
 signal game_selected(game_path, is_on_usb)
 
 
 func _ready() -> void:
 	texture_normal = load(game_path + "/icon.png")
+	
 
 
 func _on_pressed() -> void:
