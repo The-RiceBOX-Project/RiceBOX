@@ -155,7 +155,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="Game_details" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 128.0
@@ -206,29 +205,31 @@ text = "Update
 [node name="Name" type="Label" parent="Game_details"]
 layout_mode = 0
 offset_left = 256.0
-offset_top = 67.0
+offset_top = 65.0
 offset_right = 829.0
-offset_bottom = 171.0
+offset_bottom = 169.0
 theme_override_font_sizes/font_size = 50
 text = "Lorum Ipson"
 horizontal_alignment = 2
 
 [node name="Description" type="Label" parent="Game_details"]
 layout_mode = 0
-offset_left = 256.0
-offset_top = 171.0
-offset_right = 829.0
-offset_bottom = 299.0
-theme_override_font_sizes/font_size = 30
-text = "lorum ipson"
+offset_left = 295.0
+offset_top = 122.0
+offset_right = 868.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 26
+text = "Lorum Ipson"
 horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Creators" type="Label" parent="Game_details"]
 layout_mode = 0
-offset_left = 259.0
-offset_top = 241.0
-offset_right = 832.0
-offset_bottom = 369.0
+offset_left = 256.0
+offset_top = 268.0
+offset_right = 829.0
+offset_bottom = 396.0
 theme_override_font_sizes/font_size = 20
 text = "Creators: "
 horizontal_alignment = 2
@@ -252,7 +253,6 @@ script = ExtResource("10_eatvw")
 
 [node name="Timer" type="Timer" parent="Mount_USB"]
 wait_time = 3.0
-autostart = true
 
 [connection signal="pressed" from="PowerButton" to="PowerButton" method="_on_pressed"]
 [connection signal="pressed" from="Dir_select/Installed Games" to="Dir_select" method="_on_installed_games_pressed"]

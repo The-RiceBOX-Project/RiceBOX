@@ -76,8 +76,10 @@ func scroll(dir):
 	anim.track_set_key_value(0, 0, Vector2(slide, game_buttons.position.y))
 	slide += (356*-dir)
 	anim.track_set_key_value(0, 1, Vector2(slide, game_buttons.position.y))
+	$Slide.stop()
 	$Slide.play("slide")
 
 
 func _on_timer_timeout() -> void:
-	refresh()
+	#refresh() <- Bad
+	pass

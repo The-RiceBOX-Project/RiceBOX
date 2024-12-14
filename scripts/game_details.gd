@@ -27,10 +27,12 @@ func _on_game_selected(game_path, is_on_usb):
 	
 	icon.texture = ImageTexture.create_from_image(Image.load_from_file(game_path + "/icon.png"))
 	game_name.text = manifest_json.name
-	game_description.text = manifest_json.description
 	game_version.text = manifest_json.version_display
 	game_creators.text = manifest_json.creators
 	version_num = manifest_json.version
+	game_description.text = manifest_json.description
+	while game_description.get_line_count() > 3:
+		game_description.text = game_description.text.substr(0, game_description.text.length()-4) + "..."
 	
 	if is_on_usb:
 		download_or_update_button.text = "Download"
@@ -72,6 +74,7 @@ func _on_download_or_update_pressed() -> void:
 	print(["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	OS.execute("cp", ["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	_on_back_pressed()
+
 
 
 func _on_focus_delay_timeout() -> void:
