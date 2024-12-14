@@ -66,7 +66,6 @@ func refresh():
 	for child in game_buttons.get_children():
 		game_buttons.remove_child(child)
 	add_buttons()
-	show()
 
 func reselect(direction) -> void:
 	for game in game_buttons.get_children():
@@ -78,3 +77,7 @@ func scroll(dir):
 	slide += (356*-dir)
 	anim.track_set_key_value(0, 1, Vector2(slide, game_buttons.position.y))
 	$Slide.play("slide")
+
+
+func _on_timer_timeout() -> void:
+	refresh()

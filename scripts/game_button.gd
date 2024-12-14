@@ -10,7 +10,7 @@ signal game_selected(game_path, is_on_usb)
 func _ready() -> void:
 	if is_on_usb:
 		$USB.show()
-	texture_normal = load(game_path + "/icon.png")
+	texture_normal = ImageTexture.create_from_image(Image.load_from_file(game_path + "/icon.png"))
 
 
 func _on_pressed() -> void:

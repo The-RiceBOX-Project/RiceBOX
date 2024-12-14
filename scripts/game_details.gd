@@ -6,6 +6,7 @@ extends Panel
 @onready var game_creators = $Creators
 @onready var download_or_update_button = $Download_or_Update
 @onready var delete_button = $Delete
+@onready var play_button = $Run
 var version_num = 0
 @onready var executeable = ''
 var game_dir_path = ''
@@ -24,7 +25,7 @@ func _on_game_selected(game_path, is_on_usb):
 	
 	executeable = game_path + "/exec"
 	
-	icon.texture = load(game_path + "/icon.png")
+	icon.texture = ImageTexture.create_from_image(Image.load_from_file(game_path + "/icon.png"))
 	game_name.text = manifest_json.name
 	game_description.text = manifest_json.description
 	game_version.text = manifest_json.version_display
@@ -42,12 +43,14 @@ func _on_game_selected(game_path, is_on_usb):
 	
 	
 	games_list.hide()
+	$Focus_delay.start()
 	show()
 
 
 func _on_back_pressed() -> void:
 	hide()
 	games_list.refresh()
+	games_list.show()
 
 
 func _on_run_pressed() -> void:
@@ -69,3 +72,7 @@ func _on_download_or_update_pressed() -> void:
 	print(["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	OS.execute("cp", ["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	_on_back_pressed()
+
+
+func _on_focus_delay_timeout() -> void:
+	play_button.grab_focus()
