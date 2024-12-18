@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=16 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Texture2D" uid="uid://cspnnapkvvwxk" path="res://assets/natoncho_jde_mnogo_oriz_zashtoto_e_natoncho.jpg" id="1_3sfrn"]
 [ext_resource type="Texture2D" uid="uid://bmr4auwdjkki2" path="res://assets/power-button.png" id="1_7vodn"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c43k20ocatrys" path="res://assets/back.png" id="6_ly5v0"]
 [ext_resource type="Script" path="res://scripts/game_details.gd" id="9_ps7am"]
 [ext_resource type="Script" path="res://scripts/mount_usb.gd" id="10_eatvw"]
+[ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="11_1s73o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
 atlas = ExtResource("6_ly5v0")
@@ -155,6 +156,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Game_details" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 128.0
@@ -254,6 +256,10 @@ script = ExtResource("10_eatvw")
 [node name="Timer" type="Timer" parent="Mount_USB"]
 wait_time = 3.0
 
+[node name="Arduino" type="Node" parent="."]
+script = ExtResource("11_1s73o")
+PortName = "/dev/ttyACM0"
+
 [connection signal="pressed" from="PowerButton" to="PowerButton" method="_on_pressed"]
 [connection signal="pressed" from="Dir_select/Installed Games" to="Dir_select" method="_on_installed_games_pressed"]
 [connection signal="pressed" from="Dir_select/Games on USB" to="Dir_select" method="_on_games_on_usb_pressed"]
@@ -265,3 +271,4 @@ wait_time = 3.0
 [connection signal="pressed" from="Game_details/Download_or_Update" to="Game_details" method="_on_download_or_update_pressed"]
 [connection signal="timeout" from="Game_details/Focus_delay" to="Game_details" method="_on_focus_delay_timeout"]
 [connection signal="timeout" from="Mount_USB/Timer" to="Mount_USB" method="_on_timer_timeout"]
+[connection signal="DataRecieved" from="Arduino" to="Game_select" method="_on_arduino_data_recieved"]

@@ -14,6 +14,7 @@ var slide = 445
 
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	add_buttons()
 
 
@@ -83,3 +84,7 @@ func scroll(dir):
 func _on_timer_timeout() -> void:
 	#refresh() <- Bad
 	pass
+
+
+func _on_arduino_data_recieved(myString: String) -> void:
+	print(myString)
