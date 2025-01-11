@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/game_select.gd" id="6_dlo4q"]
 [ext_resource type="Texture2D" uid="uid://c43k20ocatrys" path="res://assets/back.png" id="6_ly5v0"]
 [ext_resource type="Script" path="res://scripts/game_details.gd" id="9_ps7am"]
-[ext_resource type="Script" path="res://scripts/mount_usb.gd" id="10_eatvw"]
+[ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="10_x81oe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
 atlas = ExtResource("6_ly5v0")
@@ -155,6 +155,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="Game_details" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 128.0
@@ -248,11 +249,9 @@ horizontal_alignment = 2
 wait_time = 0.5
 one_shot = true
 
-[node name="Mount_USB" type="Node" parent="."]
-script = ExtResource("10_eatvw")
-
-[node name="Timer" type="Timer" parent="Mount_USB"]
-wait_time = 3.0
+[node name="arduino" type="Node" parent="."]
+script = ExtResource("10_x81oe")
+PortName = "/dev/ttyACM0"
 
 [connection signal="pressed" from="PowerButton" to="PowerButton" method="_on_pressed"]
 [connection signal="pressed" from="Dir_select/Installed Games" to="Dir_select" method="_on_installed_games_pressed"]
@@ -264,4 +263,4 @@ wait_time = 3.0
 [connection signal="pressed" from="Game_details/Delete" to="Game_details" method="_on_delete_pressed"]
 [connection signal="pressed" from="Game_details/Download_or_Update" to="Game_details" method="_on_download_or_update_pressed"]
 [connection signal="timeout" from="Game_details/Focus_delay" to="Game_details" method="_on_focus_delay_timeout"]
-[connection signal="timeout" from="Mount_USB/Timer" to="Mount_USB" method="_on_timer_timeout"]
+[connection signal="DataRecieved" from="arduino" to="PowerButton" method="_on_arduino_data_recieved"]
