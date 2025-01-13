@@ -45,8 +45,10 @@ func _on_game_selected(game_path, is_on_usb):
 	
 	
 	games_list.hide()
-	$Focus_delay.start()
 	show()
+	await get_tree().create_timer(0.2).timeout
+	$Run.grab_focus()
+	
 
 
 func _on_back_pressed() -> void:
@@ -74,8 +76,3 @@ func _on_download_or_update_pressed() -> void:
 	print(["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	OS.execute("cp", ["-rf", mnt_dir + game_dir_name, games_dir + game_dir_name])
 	_on_back_pressed()
-
-
-
-func _on_focus_delay_timeout() -> void:
-	play_button.grab_focus()

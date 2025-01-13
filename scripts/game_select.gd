@@ -18,15 +18,20 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_right") and (selected+1 != game_num):
-		selected += 1
-		reselect(1)
-		scroll(1)
-	elif event.is_action_pressed("ui_left") and (selected-1) != 0:
-		selected -= 1
-		reselect(-1)
-		scroll(-1)
-	elif event.is_action_pressed("ui_accept"):
+	if !get_node("../Game_details").visible:
+		if event.is_action_pressed("ui_right") and (selected+1 != game_num):
+			selected += 1
+			reselect(1)
+			scroll(1)
+		elif event.is_action_pressed("ui_left") and (selected-1) != 0:
+			selected -= 1
+			reselect(-1)
+			scroll(-1)
+		elif event.is_action_pressed("show"):
+			get_node("../Settings/AnimationPlayer").play("summon")
+			get_tree().paused = true
+	
+	if event.is_action_pressed("ui_accept"):
 		game_buttons.get_child(selected-1)._on_pressed()
 
 
@@ -73,7 +78,7 @@ func reselect(direction) -> void:
 
 func scroll(dir):
 	var anim: Animation = $Slide.get_animation("slide")
-	anim.track_set_key_value(0, 0, Vector2(slide, game_buttons.position.y))
+	anim.track_set_key_value(0, 0, Vector2(game_buttons.position.x, game_buttons.position.y))
 	slide += (356*-dir)
 	anim.track_set_key_value(0, 1, Vector2(slide, game_buttons.position.y))
 	$Slide.stop()
