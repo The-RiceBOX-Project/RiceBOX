@@ -2228,6 +2228,19 @@
       "unix",
       "any",
       "base"
+    ],
+    "ubuntu.24.04-arm64": [
+      "ubuntu.24.04",
+      "ubuntu-arm64",
+      "ubuntu",
+      "debian-arm64",
+      "debian",
+      "linux-arm64",
+      "linux",
+      "unix-arm64",
+      "unix",
+      "any",
+      "base"
     ]
   }
 }
