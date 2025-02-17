@@ -16,6 +16,8 @@ func _process(delta: float) -> void:
 
 
 func _on_check_for_updates_pressed() -> void:
+	for child in updates.get_children():
+		updates.remove_child(child)
 	fetch_updates.request(get_releases_url)
 	
 
