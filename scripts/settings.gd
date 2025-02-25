@@ -37,6 +37,6 @@ func _on_poweroff_pressed() -> void:
 	internet_tab.hide()
 	internet_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	updates_tab.hide()
-	updates_tab.process_mode = Node.PROCESS_MODE_INHERIT
+	updates_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	poweroff_tab.show()
-	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
+	poweroff_tab.process_mode = Node.PROCESS_MODE_INHERIT
