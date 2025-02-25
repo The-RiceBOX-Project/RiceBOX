@@ -1,6 +1,7 @@
 extends Control
 @onready var internet_tab = $Internet
 @onready var updates_tab = $Updates
+@onready var poweroff_tab = $Poweroff
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("show"):
@@ -20,9 +21,22 @@ func _on_internet_pressed() -> void:
 	internet_tab.process_mode = Node.PROCESS_MODE_INHERIT
 	updates_tab.hide()
 	updates_tab.process_mode = Node.PROCESS_MODE_DISABLED
+	poweroff_tab.hide()
+	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_updates_pressed() -> void:
 	internet_tab.hide()
 	internet_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	updates_tab.show()
 	updates_tab.process_mode = Node.PROCESS_MODE_INHERIT
+	poweroff_tab.hide()
+	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func _on_poweroff_pressed() -> void:
+	internet_tab.hide()
+	internet_tab.process_mode = Node.PROCESS_MODE_DISABLED
+	updates_tab.hide()
+	updates_tab.process_mode = Node.PROCESS_MODE_INHERIT
+	poweroff_tab.show()
+	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
