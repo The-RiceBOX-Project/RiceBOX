@@ -48,18 +48,19 @@ func add_buttons() -> void:
 		game_num += 1
 	
 	for game in DirAccess.get_directories_at(mnt_folder):
-		for game_on_disk in game_buttons.get_children():
-			if game_on_disk.game_path.lstrip(games_folder + "/") == game:
-				game_on_disk.has_an_update = true
-				return
-		
-		var node = Game_button.instantiate()
-		node.game_path = mnt_folder + "/" + game
-		node.is_on_usb = true
-		game_buttons.add_child(node)
-		node.connect("game_selected", game_details_page._on_game_selected)
-		node.add_game_number(game_num, selected)
-		game_num += 1
+		if DirAccess.get_files_at(mnt_folder + "/" + game).has("manifest.json"):
+			for game_on_disk in game_buttons.get_children():
+				if game_on_disk.game_path.lstrip(games_folder + "/") == game:
+					game_on_disk.has_an_update = true
+					return
+			
+			var node = Game_button.instantiate()
+			node.game_path = mnt_folder + "/" + game
+			node.is_on_usb = true
+			game_buttons.add_child(node)
+			node.connect("game_selected", game_details_page._on_game_selected)
+			node.add_game_number(game_num, selected)
+			game_num += 1
 
 
 func _on_back_pressed() -> void:
