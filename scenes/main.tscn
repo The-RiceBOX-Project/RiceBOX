@@ -311,6 +311,7 @@ layout_mode = 2
 text = "Shutdown"
 
 [node name="Internet" type="Control" parent="Settings"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -489,7 +490,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="Updates" type="Control" parent="Settings"]
-visible = false
 anchors_preset = 0
 offset_top = 56.0
 offset_right = 1152.0
@@ -547,6 +547,42 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 70
 
 [node name="fetch_updates" type="HTTPRequest" parent="Settings/Updates"]
+
+[node name="UpdatingText" type="Label" parent="Settings/Updates"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -11.5
+offset_right = 104.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 21
+text = "Dowloading Version 0.0.0..."
+
+[node name="DownloadCompleted" type="VBoxContainer" parent="Settings/Updates"]
+visible = false
+layout_mode = 0
+offset_right = 1144.0
+offset_bottom = 496.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/Updates/DownloadCompleted"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 26
+text = "Update 0.0.0 has been downloaded, please restart your console in order to apply it."
+
+[node name="Restart" type="Button" parent="Settings/Updates/DownloadCompleted"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "Restart Now"
 
 [node name="Poweroff" type="Control" parent="Settings"]
 visible = false
@@ -706,6 +742,7 @@ autostart = true
 [connection signal="timeout" from="Settings/Internet/Refresh" to="Settings/Internet" method="_on_refresh_timeout"]
 [connection signal="pressed" from="Settings/Updates/Check_for_updates" to="Settings/Updates" method="_on_check_for_updates_pressed"]
 [connection signal="request_completed" from="Settings/Updates/fetch_updates" to="Settings/Updates" method="_on_fetch_updates_request_completed"]
+[connection signal="pressed" from="Settings/Updates/DownloadCompleted/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
 [connection signal="pressed" from="Settings/Poweroff/GridContainer/Shutdown" to="Settings/Poweroff" method="_on_shutdown_pressed"]
 [connection signal="pressed" from="Settings/Poweroff/GridContainer/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
 [connection signal="pressed" from="Game_details/Run" to="Game_details" method="_on_run_pressed"]
