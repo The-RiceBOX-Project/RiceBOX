@@ -18,25 +18,16 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_internet_pressed() -> void:
 	internet_tab.show()
-	internet_tab.process_mode = Node.PROCESS_MODE_INHERIT
 	updates_tab.hide()
-	updates_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	poweroff_tab.hide()
-	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_updates_pressed() -> void:
 	internet_tab.hide()
-	internet_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	updates_tab.show()
-	updates_tab.process_mode = Node.PROCESS_MODE_INHERIT
 	poweroff_tab.hide()
-	poweroff_tab.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_poweroff_pressed() -> void:
 	internet_tab.hide()
-	internet_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	updates_tab.hide()
-	updates_tab.process_mode = Node.PROCESS_MODE_DISABLED
 	poweroff_tab.show()
-	poweroff_tab.process_mode = Node.PROCESS_MODE_INHERIT
