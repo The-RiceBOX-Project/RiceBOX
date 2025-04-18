@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=31 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Texture2D" uid="uid://cspnnapkvvwxk" path="res://assets/natoncho_jde_mnogo_oriz_zashtoto_e_natoncho.jpg" id="1_3sfrn"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/internet.gd" id="11_1jp4l"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="11_wv1mg"]
 [ext_resource type="Script" path="res://scripts/mount_usb.gd" id="13_roqrh"]
+[ext_resource type="PackedScene" uid="uid://cmofp31lpekmh" path="res://VirtualKeyboard/Scenes/virtual_keyboard.tscn" id="15_fave1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
 atlas = ExtResource("6_ly5v0")
@@ -782,6 +783,18 @@ script = ExtResource("13_roqrh")
 wait_time = 5.0
 autostart = true
 
+[node name="VirtualKeyboard" parent="." node_paths=PackedStringArray("textBox", "exitFocus") instance=ExtResource("15_fave1")]
+process_mode = 3
+visible = false
+z_index = 3
+layout_mode = 1
+offset_left = 136.0
+offset_top = 208.0
+offset_right = 136.0
+offset_bottom = 208.0
+textBox = NodePath("../Settings/Internet/Popup/PassField")
+exitFocus = NodePath("../Settings/Internet/Popup/Enter")
+
 [connection signal="pressed" from="Game_select/Back" to="Game_select" method="_on_back_pressed"]
 [connection signal="timeout" from="Game_select/Timer" to="Game_select" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Settings/AnimationPlayer" to="Settings" method="_on_animation_player_animation_finished"]
@@ -791,6 +804,7 @@ autostart = true
 [connection signal="pressed" from="Settings/Buttons/Background" to="Settings" method="_on_updates_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Poweroff" to="Settings" method="_on_poweroff_pressed"]
 [connection signal="pressed" from="Settings/Internet/Popup/Back" to="Settings/Internet" method="_on_back_pressed"]
+[connection signal="focus_entered" from="Settings/Internet/Popup/PassField" to="VirtualKeyboard" method="_on_focus_entered"]
 [connection signal="gui_input" from="Settings/Internet/Popup/PassField" to="Settings/Internet" method="_on_pass_field_gui_input"]
 [connection signal="pressed" from="Settings/Internet/Popup/Enter" to="Settings/Internet" method="_on_enter_pressed"]
 [connection signal="pressed" from="Settings/Internet/InternetButtons/Search" to="Settings/Internet" method="_on_search_pressed"]
