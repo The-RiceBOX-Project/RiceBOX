@@ -61,3 +61,6 @@ func _on_arduino_data_recieved(myString: String) -> void:
 
 func roundc(value: String) -> int:
 	return floor(float(value) + 0.5)
+
+func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

@@ -321,7 +321,6 @@ layout_mode = 2
 text = "Shutdown"
 
 [node name="Internet" type="Control" parent="Settings"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -596,6 +595,7 @@ theme_override_font_sizes/font_size = 50
 text = "Restart Now"
 
 [node name="Date&Time" type="Control" parent="Settings"]
+visible = false
 anchors_preset = 0
 offset_top = 56.0
 offset_right = 1152.0
