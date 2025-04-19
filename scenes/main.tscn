@@ -321,6 +321,7 @@ layout_mode = 2
 text = "Shutdown"
 
 [node name="Internet" type="Control" parent="Settings"]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -595,7 +596,6 @@ theme_override_font_sizes/font_size = 50
 text = "Restart Now"
 
 [node name="Date&Time" type="Control" parent="Settings"]
-visible = false
 anchors_preset = 0
 offset_top = 56.0
 offset_right = 1152.0
@@ -622,7 +622,7 @@ layout_mode = 2
 
 [node name="UpButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 45
 alignment = 1
 
 [node name="HoursUp" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons"]
@@ -643,7 +643,7 @@ horizontal_alignment = 1
 
 [node name="DownButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 60
 alignment = 1
 
 [node name="HoursDown" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons"]
