@@ -7,11 +7,13 @@ var download_url
 @onready var check_for_updates = get_node("../../../Check_for_updates")
 @onready var download_completed = get_node("../../../DownloadCompleted")
 @onready var updates_list = get_node("../../")
+@onready var updates_button = get_node("../../../../Buttons/Updates")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Version.text = version
-	$Date.text = date
+	$Date.text = date.replace("T", " ")
+	$Date.text = $Date.text.replace("Z", "")
 
 
 func _on_update_pressed() -> void:
@@ -20,6 +22,7 @@ func _on_update_pressed() -> void:
 	update_text.show()
 	updates_list.hide()
 	check_for_updates.hide()
+	updates_button.grab_focus()
 
 func _on_http_request_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	print("aaa")
