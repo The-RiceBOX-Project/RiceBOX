@@ -5,7 +5,7 @@ var is_textbox_on_focus = false
 
 func _ready() -> void:
 	for button in get_children():
-		if button.name != "background":
+		if button.name != "background" and button.name != "AnimationPlayer":
 			button.clicked.connect(_on_button_clicked)
 	
 
@@ -19,6 +19,7 @@ func _on_focus_exited():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and is_textbox_on_focus and !visible:
 		show()
+		$AnimationPlayer.play("show")
 		$Space.grab_focus()
 
 
@@ -38,6 +39,7 @@ func _on_button_clicked(key):
 					button.text = button.text.to_upper()
 			is_uppercase = true
 	elif key == "EXIT":
+		$AnimationPlayer.play_backwards("show")
 		hide()
 		textBox.grab_focus()
 	else:
