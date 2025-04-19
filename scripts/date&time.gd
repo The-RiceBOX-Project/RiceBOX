@@ -57,4 +57,4 @@ func _on_mins_down_pressed() -> void:
 
 
 func _on_set_pressed() -> void:
-	OS.execute("sudo", ["date", "--set", timeLabel.text])
+	OS.execute("sudo", ["date", "--set", '"' + timeLabel.text.replace(" : ", ":") + '"'])
