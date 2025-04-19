@@ -310,7 +310,7 @@ text = "System Update"
 
 [node name="Date&Time" type="Button" parent="Settings/Buttons"]
 layout_mode = 2
-text = "Date&Time"
+text = "Clock"
 
 [node name="Background" type="Button" parent="Settings/Buttons"]
 layout_mode = 2
@@ -609,35 +609,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -89.5
-offset_top = -33.0
-offset_right = 89.5
-offset_bottom = 33.0
+offset_left = -37.5
+offset_top = -64.0
+offset_right = 37.5
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 30
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Date&Time/VBoxContainer"]
 layout_mode = 2
 
-[node name="Hours" type="SpinBox" parent="Settings/Date&Time/VBoxContainer/HBoxContainer"]
+[node name="UpButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-max_value = 23.0
+theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Label" type="Label" parent="Settings/Date&Time/VBoxContainer/HBoxContainer"]
+[node name="HoursUp" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons"]
 layout_mode = 2
-text = ":"
+theme_override_font_sizes/font_size = 60
+text = " + "
 
-[node name="Mins" type="SpinBox" parent="Settings/Date&Time/VBoxContainer/HBoxContainer"]
+[node name="MinsUp" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons"]
 layout_mode = 2
-max_value = 59.0
+theme_override_font_sizes/font_size = 60
+text = " + "
+
+[node name="Time" type="Label" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "00 : 00"
+horizontal_alignment = 1
+
+[node name="DownButtons" type="HBoxContainer" parent="Settings/Date&Time/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Change" type="Button" parent="Settings/Date&Time/VBoxContainer"]
+[node name="HoursDown" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Change"
+theme_override_font_sizes/font_size = 60
+text = " - "
+
+[node name="MinsDown" type="Button" parent="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = " - "
+
+[node name="Set" type="Button" parent="Settings/Date&Time/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Set Time"
 
 [node name="Poweroff" type="Control" parent="Settings"]
 visible = false
@@ -813,7 +835,11 @@ textBox = NodePath("../Settings/Internet/Popup/PassField")
 [connection signal="pressed" from="Settings/Updates/Check_for_updates" to="Settings/Updates" method="_on_check_for_updates_pressed"]
 [connection signal="request_completed" from="Settings/Updates/fetch_updates" to="Settings/Updates" method="_on_fetch_updates_request_completed"]
 [connection signal="pressed" from="Settings/Updates/DownloadCompleted/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
-[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/Change" to="Settings/Date&Time" method="_on_change_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons/HoursUp" to="Settings/Date&Time" method="_on_hours_up_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/UpButtons/MinsUp" to="Settings/Date&Time" method="_on_mins_up_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons/HoursDown" to="Settings/Date&Time" method="_on_hours_down_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/VBoxContainer/DownButtons/MinsDown" to="Settings/Date&Time" method="_on_mins_down_pressed"]
+[connection signal="pressed" from="Settings/Date&Time/VBoxContainer/Set" to="Settings/Date&Time" method="_on_set_pressed"]
 [connection signal="pressed" from="Settings/Poweroff/GridContainer/Shutdown" to="Settings/Poweroff" method="_on_shutdown_pressed"]
 [connection signal="pressed" from="Settings/Poweroff/GridContainer/Restart" to="Settings/Poweroff" method="_on_restart_pressed"]
 [connection signal="pressed" from="Game_details/Run" to="Game_details" method="_on_run_pressed"]

@@ -40,5 +40,6 @@ func _on_poweroff_pressed() -> void:
 func _on_date_time_pressed() -> void:
 	internet_tab.hide()
 	updates_tab.hide()
+	date_and_time_tab.show_current_time()
 	date_and_time_tab.show()
 	poweroff_tab.hide()

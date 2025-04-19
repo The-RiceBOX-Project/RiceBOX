@@ -1,16 +1,60 @@
 extends Control
-@onready var hours_input = $VBoxContainer/HBoxContainer/Hours
-@onready var mins_input = $VBoxContainer/HBoxContainer/Mins
+@onready var timeLabel = $VBoxContainer/VBoxContainer/Time
 
-func _on_change_pressed() -> void:
-	var hours = str(hours_input.value)
-	var mins = str(mins_input.value)
+
+func show_current_time():
+	timeLabel.text = get_node("../../Clock").text.replace(":", " : ")
+
+
+func get_hours():
+	return timeLabel.text.split(" : ")[0]
 	
-	if int(hours) < 10:
-		hours = "0" + hours
-		
-	if int(mins) < 10:
-		mins = "0" + mins
-	
-	print('"' + hours + ':' + mins + ':00"')
-	OS.execute("sudo", ["date", "-s", '"' + hours + ':' + mins + ':00"'])
+func get_mins():
+	return timeLabel.text.split(" : ")[1]
+
+func _on_hours_up_pressed() -> void:
+	var hours = int(get_hours())
+	hours += 1
+	if hours > 23:
+		hours = 0
+	if hours < 10:
+		timeLabel.text = "0" + str(hours) + " : " + get_mins()
+	else:
+		timeLabel.text = str(hours) + " : " + get_mins()
+
+
+func _on_mins_up_pressed() -> void:
+	var mins = int(get_mins())
+	mins += 1
+	if mins > 59:
+		mins = 0
+	if mins < 10:
+		timeLabel.text = get_hours() + " : 0" + str(mins)
+	else:
+		timeLabel.text = get_hours() + " : " + str(mins)
+
+
+func _on_hours_down_pressed() -> void:
+	var hours = int(get_hours())
+	hours -= 1
+	if hours < 0:
+		hours = 23
+	if hours < 10:
+		timeLabel.text = "0" + str(hours) + " : " + get_mins()
+	else:
+		timeLabel.text = str(hours) + " : " + get_mins()
+
+
+func _on_mins_down_pressed() -> void:
+	var mins = int(get_mins())
+	mins -= 1
+	if mins < 0:
+		mins = 59
+	if mins < 10:
+		timeLabel.text = get_hours() + " : 0" + str(mins)
+	else:
+		timeLabel.text = get_hours() + " : " + str(mins)
+
+
+func _on_set_pressed() -> void:
+	OS.execute("sudo", ["date", "--set", timeLabel.text])
