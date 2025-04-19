@@ -1,9 +1,8 @@
 extends Control
 @export var textBox : Control
-@export var exitFocus : Control
 var is_uppercase = false
+var is_textbox_on_focus = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for button in get_children():
 		if button.name != "background":
@@ -12,10 +11,15 @@ func _ready() -> void:
 
 
 func _on_focus_entered():
-	show()
-	$Space.grab_focus()
+	is_textbox_on_focus = true
 
+func _on_focus_exited():
+	is_textbox_on_focus = false
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept") and is_textbox_on_focus and !visible:
+		show()
+		$Space.grab_focus()
 
 
 func _on_button_clicked(key):
@@ -35,6 +39,6 @@ func _on_button_clicked(key):
 			is_uppercase = true
 	elif key == "EXIT":
 		hide()
-		exitFocus.grab_focus()
+		textBox.grab_focus()
 	else:
 		textBox.text += key
