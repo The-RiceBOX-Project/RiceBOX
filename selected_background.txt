@@ -1,0 +1,3 @@
+[background]
+
+background=Resource("res://assets/backgrounds/DefaultBackground.png")

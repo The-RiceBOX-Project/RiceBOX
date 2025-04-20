@@ -1,5 +1,5 @@
 extends Control
-
+var config = ConfigFile.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,3 +13,18 @@ func show_outline():
 
 func hide_outline():
 	$SelectedOutline.hide()
+
+
+func _on_focus_focus_entered() -> void:
+	show_outline()
+
+
+func _on_focus_exited() -> void:
+	hide_outline()
+	
+
+func _on_focus_pressed() -> void:
+	get_tree().get_first_node_in_group("Background").texture = $Image.texture
+	config.load("selected_background.txt")
+	config.set_value("background", "background", $Image.texture)
+	config.save("selected_background.txt")
