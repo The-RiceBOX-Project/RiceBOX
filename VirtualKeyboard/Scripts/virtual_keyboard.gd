@@ -2,6 +2,7 @@ extends Control
 @export var textBox : Control
 var is_uppercase = false
 var is_textbox_on_focus = false
+var is_up = false
 
 func _ready() -> void:
 	for button in get_children():
@@ -17,10 +18,11 @@ func _on_focus_exited():
 	is_textbox_on_focus = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept") and is_textbox_on_focus and !visible:
+	if event.is_action_pressed("ui_accept") and is_textbox_on_focus and !is_up:
 		show()
 		$AnimationPlayer.play("show")
 		$Space.grab_focus()
+		is_up = true
 
 
 func _on_button_clicked(key):
@@ -40,7 +42,7 @@ func _on_button_clicked(key):
 			is_uppercase = true
 	elif key == "EXIT":
 		$AnimationPlayer.play_backwards("show")
-		hide()
+		is_up = false
 		textBox.grab_focus()
 	else:
 		textBox.text += key
