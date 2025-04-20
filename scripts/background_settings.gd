@@ -1,6 +1,5 @@
 extends Control
 var background_option_scene = preload("res://scenes/background_option.tscn")
-@export var backgrounds : Array[Resource]
 var config = ConfigFile.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,10 +7,13 @@ func _ready() -> void:
 	if config.has_section_key("background", "background"):
 		get_tree().get_first_node_in_group("Background").texture = config.get_value("background", "background")
 	
-	for background in backgrounds:
-		var node = background_option_scene.instantiate()
-		$ScrollContainer/GridContainer.add_child(node)
-		node.get_node("Image").texture = background
+	for file in DirAccess.get_files_at("backgrounds"):
+		var image = Image.load_from_file("backgrounds/" + file)
+		if image != null:
+			var texture = ImageTexture.create_from_image(image)
+			var node = background_option_scene.instantiate()
+			$ScrollContainer/GridContainer.add_child(node)
+			node.get_node("Image").texture = texture
 	
 	var i = 0
 	for node in $ScrollContainer/GridContainer.get_children():

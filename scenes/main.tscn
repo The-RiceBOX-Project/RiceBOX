@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=32 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
 [ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="2_hris7"]
@@ -13,12 +13,8 @@
 [ext_resource type="Script" path="res://scripts/background_settings.gd" id="10_wg613"]
 [ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="10_x81oe"]
 [ext_resource type="Script" path="res://scripts/internet.gd" id="11_1jp4l"]
-[ext_resource type="Texture2D" uid="uid://tr5rc1plydqs" path="res://assets/backgrounds/backgorund1.png" id="11_fcnbt"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="11_wv1mg"]
-[ext_resource type="Texture2D" uid="uid://b0al52vx8oevk" path="res://assets/backgrounds/backgorund2.png" id="12_qgmvm"]
-[ext_resource type="Texture2D" uid="uid://drhblxld7hob8" path="res://assets/backgrounds/backgorund3.png" id="13_h5bku"]
 [ext_resource type="Script" path="res://scripts/mount_usb.gd" id="13_roqrh"]
-[ext_resource type="Texture2D" uid="uid://lvelo7f44sfs" path="res://assets/backgrounds/DefaultBackground.png" id="14_nfw68"]
 [ext_resource type="PackedScene" uid="uid://cmofp31lpekmh" path="res://VirtualKeyboard/Scenes/virtual_keyboard.tscn" id="15_fave1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
@@ -665,7 +661,6 @@ offset_top = 56.0
 offset_right = 1152.0
 offset_bottom = 552.0
 script = ExtResource("10_wg613")
-backgrounds = Array[Resource]([ExtResource("11_fcnbt"), ExtResource("12_qgmvm"), ExtResource("13_h5bku"), ExtResource("14_nfw68")])
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Settings/BackgroundSettings"]
 layout_mode = 1
