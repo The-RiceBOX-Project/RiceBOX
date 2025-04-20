@@ -2,6 +2,7 @@ extends Control
 @onready var internet_tab = $Internet
 @onready var updates_tab = $Updates
 @onready var date_and_time_tab = $"Date&Time"
+@onready var backgrounds_tab = $BackgroundSettings
 @onready var poweroff_tab = $Poweroff
 
 func _input(event: InputEvent) -> void:
@@ -21,12 +22,14 @@ func _on_internet_pressed() -> void:
 	internet_tab.show()
 	updates_tab.hide()
 	date_and_time_tab.hide()
+	backgrounds_tab.hide()
 	poweroff_tab.hide()
 
 func _on_updates_pressed() -> void:
 	internet_tab.hide()
 	updates_tab.show()
 	date_and_time_tab.hide()
+	backgrounds_tab.hide()
 	poweroff_tab.hide()
 
 
@@ -34,6 +37,7 @@ func _on_poweroff_pressed() -> void:
 	internet_tab.hide()
 	updates_tab.hide()
 	date_and_time_tab.hide()
+	backgrounds_tab.hide()
 	poweroff_tab.show()
 
 
@@ -42,4 +46,13 @@ func _on_date_time_pressed() -> void:
 	updates_tab.hide()
 	date_and_time_tab.show_current_time()
 	date_and_time_tab.show()
+	backgrounds_tab.hide()
+	poweroff_tab.hide()
+
+
+func _on_background_pressed() -> void:
+	internet_tab.hide()
+	updates_tab.hide()
+	date_and_time_tab.hide()
+	backgrounds_tab.show()
 	poweroff_tab.hide()

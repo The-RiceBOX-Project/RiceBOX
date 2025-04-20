@@ -14,7 +14,18 @@ func _ready() -> void:
 	$Version.text = version
 	$Date.text = date.replace("T", " ")
 	$Date.text = $Date.text.replace("Z", "")
-
+	var current_version = ProjectSettings.get_setting("application/config/version")
+	if version == current_version:
+		$Update.text = "Current"
+		$Update.disabled = true
+	if current_version.split(".")[0] > version.split(".")[0]:
+		$Update.text = "Downgrade"
+	elif current_version.split(".")[0] == version.split(".")[0]:
+		if current_version.split(".")[1] > version.split(".")[1]:
+			$Update.text = "Downgrade"
+		elif current_version.split(".")[1] == version.split(".")[1]:
+			if current_version.split(".")[2] > version.split(".")[2]:
+				$Update.text = "Downgrade"
 
 func _on_update_pressed() -> void:
 	http_req.request(download_url)

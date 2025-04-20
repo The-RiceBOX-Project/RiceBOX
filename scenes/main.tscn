@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=32 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
 [ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="2_hris7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/poweroff.gd" id="9_nng78"]
 [ext_resource type="Script" path="res://scripts/game_details.gd" id="9_ps7am"]
 [ext_resource type="Script" path="res://scripts/date&time.gd" id="9_u045i"]
+[ext_resource type="Script" path="res://scripts/background_settings.gd" id="10_wg613"]
 [ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="10_x81oe"]
 [ext_resource type="Script" path="res://scripts/internet.gd" id="11_1jp4l"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="11_wv1mg"]
@@ -202,13 +203,13 @@ anchors_preset = 0
 script = ExtResource("1_oc8ga")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(576, 324)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_o412p")
 
 [node name="Clock" type="Label" parent="."]
 process_mode = 3
-visible = false
 layout_mode = 0
 offset_left = 986.0
 offset_top = 16.0
@@ -654,6 +655,31 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Set Time"
 
+[node name="BackgroundSettings" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = 56.0
+offset_right = 1152.0
+offset_bottom = 552.0
+script = ExtResource("10_wg613")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/BackgroundSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="Settings/BackgroundSettings/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 412
+theme_override_constants/v_separation = 250
+columns = 3
+
 [node name="Poweroff" type="Control" parent="Settings"]
 visible = false
 anchors_preset = 0
@@ -803,8 +829,10 @@ process_mode = 3
 visible = false
 z_index = 3
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 448.0
+offset_left = 1440.0
+offset_top = 352.0
+offset_right = 1440.0
+offset_bottom = 352.0
 textBox = NodePath("../Settings/Internet/Popup/PassField")
 
 [connection signal="pressed" from="Game_select/Back" to="Game_select" method="_on_back_pressed"]
@@ -813,7 +841,7 @@ textBox = NodePath("../Settings/Internet/Popup/PassField")
 [connection signal="pressed" from="Settings/Buttons/Internet" to="Settings" method="_on_internet_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Updates" to="Settings" method="_on_updates_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Date&Time" to="Settings" method="_on_date_time_pressed"]
-[connection signal="pressed" from="Settings/Buttons/Background" to="Settings" method="_on_updates_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Background" to="Settings" method="_on_background_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Poweroff" to="Settings" method="_on_poweroff_pressed"]
 [connection signal="pressed" from="Settings/Internet/Popup/Back" to="Settings/Internet" method="_on_back_pressed"]
 [connection signal="focus_entered" from="Settings/Internet/Popup/PassField" to="VirtualKeyboard" method="_on_focus_entered"]
