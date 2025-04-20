@@ -32,7 +32,8 @@ func _input(event: InputEvent) -> void:
 			get_tree().paused = true
 	
 	if event.is_action_pressed("ui_accept"):
-		game_buttons.get_child(selected-1)._on_pressed()
+		if game_buttons.get_child(selected-1) != null:
+			game_buttons.get_child(selected-1)._on_pressed()
 
 
 
