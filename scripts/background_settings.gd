@@ -1,7 +1,8 @@
 extends Control
 var background_option_scene = preload("res://scenes/background_option.tscn")
 var config = ConfigFile.new()
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	config.load("user://selected_background.txt")
 	if config.has_section_key("background", "background"):

@@ -2,7 +2,6 @@ extends Control
 
 
 func _on_shutdown_pressed() -> void:
-	print("aaa")
 	OS.execute("poweroff", [])
 
 
