@@ -15,7 +15,7 @@ func _on_check_for_updates_pressed() -> void:
 
 func _on_fetch_updates_request_completed(_result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray) -> void:
 	if response_code != 200:
-		error_label.text = "An error has occured, please check you internet connection and try again. BUZON"
+		error_label.text = "An error has occured, please check you internet connection and try again."
 	else:
 		error_label.text = ""
 		var versions = JSON.parse_string(body.get_string_from_utf8())

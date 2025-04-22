@@ -9,7 +9,6 @@ var download_url
 @onready var updates_list = get_node("../../")
 @onready var updates_button = get_node("../../../../Buttons/Updates")
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Version.text = version
 	$Date.text = date.replace("T", " ")
