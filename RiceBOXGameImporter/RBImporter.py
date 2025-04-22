@@ -11,7 +11,7 @@ def generate_manifest_json(game_name, game_description, authors, version):
     manifest = {
         "name": game_name,
         "description": game_description,
-        "authors": authors,
+        "creators": authors,
         "version": version
     }
 
