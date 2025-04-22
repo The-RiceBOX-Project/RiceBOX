@@ -1,11 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=31 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
 [ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="2_hris7"]
 [ext_resource type="Texture2D" uid="uid://xa6mpf3vje5l" path="res://assets/DefaultBackground.png" id="2_o412p"]
 [ext_resource type="Script" path="res://scripts/clock.gd" id="3_i5f4w"]
 [ext_resource type="Script" path="res://scripts/game_select.gd" id="6_dlo4q"]
-[ext_resource type="Texture2D" uid="uid://c43k20ocatrys" path="res://assets/back.png" id="6_ly5v0"]
 [ext_resource type="Script" path="res://scripts/updates.gd" id="9_ane0h"]
 [ext_resource type="Script" path="res://scripts/poweroff.gd" id="9_nng78"]
 [ext_resource type="Script" path="res://scripts/game_details.gd" id="9_ps7am"]
@@ -18,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cmofp31lpekmh" path="res://VirtualKeyboard/Scenes/virtual_keyboard.tscn" id="15_fave1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
-atlas = ExtResource("6_ly5v0")
+atlas = ExtResource("2_hris7")
 region = Rect2(227.9, 0, 183.1, 131.62)
 
 [sub_resource type="Animation" id="Animation_683q3"]

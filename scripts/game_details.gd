@@ -11,7 +11,6 @@ extends Panel
 @onready var games_list = get_node("../Game_select")
 
 @onready var executable = ""
-var version_num = 0
 var game_dir_path = ""
 var _is_on_usb = false
 
@@ -30,9 +29,8 @@ func _on_game_selected(game_path: String, is_on_usb: bool) -> void:
 	
 	icon.texture = ImageTexture.create_from_image(Image.load_from_file(game_path + "/icon.png"))
 	game_name.text = manifest_json.name
-	game_version.text = manifest_json.version_display
+	game_version.text = manifest_json.version
 	game_creators.text = manifest_json.creators
-	version_num = manifest_json.version
 	game_description.text = manifest_json.description
 	
 	while game_description.get_line_count() > 3:
@@ -60,13 +58,25 @@ func check_for_updates():
 		var manifest_file = FileAccess.open(MNT_DIR + "/" + game_on_mnt_path + "/manifest.json", FileAccess.READ)
 		var manifest_json = JSON.parse_string(manifest_file.get_as_text())
 		
-		if manifest_json.version < version_num:
+		if manifest_json.version == game_version.text:
+			download_or_update_btn.disabled = true
+			download_or_update_btn.text = "Update"
+			return
+		if game_version.text.split(".")[0] > manifest_json.version.split(".")[0]:
 			download_or_update_btn.text = "Downgrade"
 			download_or_update_btn.disabled = false
-		elif manifest_json.version > version_num:
-			download_or_update_btn.text = "Update"
-			download_or_update_btn.disabled = false
-
+		elif game_version.text.split(".")[0] == manifest_json.version.split(".")[0]:
+			if game_version.text.split(".")[1] > manifest_json.version.split(".")[1]:
+				download_or_update_btn.text = "Downgrade"
+				download_or_update_btn.disabled = false
+				return
+			elif game_version.text.split(".")[1] == manifest_json.version.split(".")[1]:
+				if game_version.text.split(".")[2] > manifest_json.version.split(".")[2]:
+					download_or_update_btn.text = "Downgrade"
+					download_or_update_btn.disabled = false
+					return
+		download_or_update_btn.text = "Update"
+		download_or_update_btn.disabled = false
 
 func _on_back_pressed() -> void:
 	hide()
