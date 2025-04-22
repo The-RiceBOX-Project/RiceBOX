@@ -21,8 +21,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept") and is_textbox_on_focus and !is_up:
 		show()
 		$AnimationPlayer.play("show")
-		$Space.grab_focus()
 		is_up = true
+		await get_tree().create_timer(0.2).timeout
+		$Space.grab_focus()
 
 
 func _on_button_clicked(key):
@@ -32,12 +33,12 @@ func _on_button_clicked(key):
 		print("shift")
 		if is_uppercase:
 			for button in get_children():
-				if button.name != "background" and button.text != "EXIT":
+				if button.name != "background" and button.name != "AnimationPlayer" and button.text != "EXIT":
 					button.text = button.text.to_lower()
 			is_uppercase = false
 		else:
 			for button in get_children():
-				if button.name != "background" and button.text != "EXIT":
+				if button.name != "background" and button.name != "AnimationPlayer" and button.text != "EXIT":
 					button.text = button.text.to_upper()
 			is_uppercase = true
 	elif key == "EXIT":

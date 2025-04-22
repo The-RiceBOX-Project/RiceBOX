@@ -20,9 +20,11 @@ func _ready() -> void:
 		$Update.disabled = true
 	if current_version.split(".")[0] > version.split(".")[0]:
 		$Update.text = "Downgrade"
+		return
 	elif current_version.split(".")[0] == version.split(".")[0]:
 		if current_version.split(".")[1] > version.split(".")[1]:
 			$Update.text = "Downgrade"
+			return
 		elif current_version.split(".")[1] == version.split(".")[1]:
 			if current_version.split(".")[2] > version.split(".")[2]:
 				$Update.text = "Downgrade"
