@@ -25,6 +25,6 @@ func _on_focus_exited() -> void:
 
 func _on_focus_pressed() -> void:
 	get_tree().get_first_node_in_group("Background").texture = $Image.texture
-	config.load("selected_background.txt")
+	config.load("user://selected_background.txt")
 	config.set_value("background", "background", $Image.texture)
-	config.save("selected_background.txt")
+	config.save("user://selected_background.txt")
