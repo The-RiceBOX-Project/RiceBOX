@@ -46,7 +46,7 @@ def generate():
         RBImporter.put_icon(game_name, icon_path)
         RBImporter.put_exec(game_name, exec_path)
     if data_folder_path:
-        RBImporter.put_data_folder(data_folder_path)
+        RBImporter.put_data_folder(game_name, data_folder_path)
     
     messagebox.showinfo("RiceBOX Game Port Generator", "Game ported successfully")
 
