@@ -8,13 +8,14 @@ func _ready() -> void:
 	if config.has_section_key("background", "background"):
 		get_tree().get_first_node_in_group("Background").texture = config.get_value("background", "background")
 	
-	for file in DirAccess.get_files_at("res://backgrounds"):
-		var image = Image.load_from_file("res://backgrounds/" + file)
-		if image != null:
-			var texture = ImageTexture.create_from_image(image)
-			var node = background_option_scene.instantiate()
-			$ScrollContainer/GridContainer.add_child(node)
-			node.get_node("Image").texture = texture
+	
+	#for file in DirAccess.get_files_at("res://backgrounds"):
+	#	var image = Image.load_from_file("res://backgrounds/" + file)
+	#	if image != null:
+	#		var texture = ImageTexture.create_from_image(image)
+	#		var node = background_option_scene.instantiate()
+	#		$ScrollContainer/GridContainer.add_child(node)
+	#		node.get_node("Image").texture = texture
 	
 	var i = 0
 	for node in $ScrollContainer/GridContainer.get_children():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cfef2coa1s3cm"]
+[gd_scene load_steps=35 format=3 uid="uid://cfef2coa1s3cm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oc8ga"]
 [ext_resource type="Texture2D" uid="uid://cgbc1tidiwagd" path="res://assets/galabin.png" id="2_hris7"]
@@ -12,8 +12,12 @@
 [ext_resource type="Script" path="res://scripts/background_settings.gd" id="10_wg613"]
 [ext_resource type="Script" path="res://addons/arduino/arduino.cs" id="10_x81oe"]
 [ext_resource type="Script" path="res://scripts/internet.gd" id="11_1jp4l"]
+[ext_resource type="PackedScene" uid="uid://y5rx0ss55tfs" path="res://scenes/background_option.tscn" id="11_6liek"]
 [ext_resource type="Script" path="res://scripts/settings.gd" id="11_wv1mg"]
+[ext_resource type="Texture2D" uid="uid://brsgy7ug4c2t4" path="res://backgrounds/image.png" id="12_2yhcj"]
+[ext_resource type="Texture2D" uid="uid://dsshj4t861a8b" path="res://backgrounds/RiceBox-background.png" id="13_c78ji"]
 [ext_resource type="Script" path="res://scripts/mount_usb.gd" id="13_roqrh"]
+[ext_resource type="Texture2D" uid="uid://dpp5edsf4iao7" path="res://backgrounds/DefaultBackground.png" id="14_1edvc"]
 [ext_resource type="PackedScene" uid="uid://cmofp31lpekmh" path="res://VirtualKeyboard/Scenes/virtual_keyboard.tscn" id="15_fave1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3jdl"]
@@ -679,6 +683,18 @@ size_flags_horizontal = 4
 theme_override_constants/h_separation = 412
 theme_override_constants/v_separation = 250
 columns = 3
+
+[node name="Background_option" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("12_2yhcj")
+
+[node name="Background_option2" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("13_c78ji")
+
+[node name="Background_option3" parent="Settings/BackgroundSettings/ScrollContainer/GridContainer" instance=ExtResource("11_6liek")]
+layout_mode = 2
+image = ExtResource("14_1edvc")
 
 [node name="Poweroff" type="Control" parent="Settings"]
 visible = false

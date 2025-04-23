@@ -1,7 +1,8 @@
 extends Control
 var config = ConfigFile.new()
+@export var image : Resource
 
-func set_image(image : Image):
+func _ready() -> void:
 	$Image.texture = image
 
 func show_outline():
