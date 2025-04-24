@@ -840,6 +840,10 @@ script = ExtResource("13_roqrh")
 wait_time = 5.0
 autostart = true
 
+[node name="TimeoutArduino" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="VirtualKeyboard" parent="." node_paths=PackedStringArray("textBox") instance=ExtResource("15_fave1")]
 process_mode = 3
 visible = false
@@ -881,3 +885,4 @@ textBox = NodePath("../Settings/Internet/Popup/PassField")
 [connection signal="pressed" from="Game_details/Download_or_Update" to="Game_details" method="_on_download_or_update_pressed"]
 [connection signal="DataRecieved" from="arduino" to="." method="_on_arduino_data_recieved"]
 [connection signal="timeout" from="Timer" to="MountUSB" method="_on_timer_timeout"]
+[connection signal="timeout" from="TimeoutArduino" to="." method="_on_timeout_arduino_timeout"]
