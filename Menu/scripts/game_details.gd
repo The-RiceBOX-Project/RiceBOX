@@ -39,11 +39,11 @@ func _on_game_selected(game_path: String, is_on_usb: bool) -> void:
 	if is_on_usb:
 		download_or_update_btn.text = "Download"
 		download_or_update_btn.disabled = false
-		delete_btn.hide()
+		delete_btn.disabled = true
 	else:
 		download_or_update_btn.disabled = true
 		download_or_update_btn.text = "Update"
-		delete_btn.show()
+		delete_btn.disabled = false
 		check_for_updates()
 	
 	games_list.hide()
