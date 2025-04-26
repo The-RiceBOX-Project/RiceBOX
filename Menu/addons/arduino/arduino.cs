@@ -90,7 +90,7 @@ public partial class arduino : Node
 	
 	private bool IsDeviceConnected(SerialPort port)
 	{
-		GD.Print($"Attempting to connect to device on port {port.PortName}...");
+		GD.PrintErr($"Attempting to connect to device on port...");
 		try
 		{
 			if (!port.IsOpen)
