@@ -81,4 +81,4 @@ func _ready() -> void:
 
 
 func _on_timeout_arduino_timeout() -> void:
-	$arduino.process_mode = Node.PROCESS_MODE_INHERIT
+	$arduino.process_mode = Node.PROCESS_MODE_ALWAYS
