@@ -85,11 +85,11 @@ func _on_back_pressed() -> void:
 
 
 func _on_run_pressed() -> void:
-	OS.execute(executable, [])
 	var arduino: Node = get_node("../arduino")
 	arduino._ExitTree()
 	arduino.process_mode = Node.PROCESS_MODE_DISABLED
 	get_node("../TimeoutArduino").start()
+	OS.execute(executable, [])
 
 
 func _on_delete_pressed() -> void:
