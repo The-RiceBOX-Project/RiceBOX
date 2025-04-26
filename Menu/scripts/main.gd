@@ -8,7 +8,7 @@ var controller_ready := false
 
 
 func _on_arduino_data_recieved(myString: String) -> void:
-	print(myString)
+	#print(myString)
 	var data = myString.split(" ")
 	var vert =  roundc(data[0])
 	var horz =  roundc(data[1])
