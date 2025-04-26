@@ -25,5 +25,4 @@ func _on_fetch_updates_request_completed(_result: int, response_code: int, _head
 			node.date = version.published_at
 			node.download_url = version.assets[0].browser_download_url
 			updates.add_child(node)
-			updates.move_child(node, 0)
 		

@@ -300,10 +300,6 @@ scale = Vector2(1.2, 1.2)
 layout_mode = 2
 text = "  Internet  "
 
-[node name="Updates" type="Button" parent="Settings/Buttons"]
-layout_mode = 2
-text = "System Update"
-
 [node name="Date&Time" type="Button" parent="Settings/Buttons"]
 layout_mode = 2
 text = "Clock"
@@ -311,6 +307,10 @@ text = "Clock"
 [node name="Background" type="Button" parent="Settings/Buttons"]
 layout_mode = 2
 text = "Background"
+
+[node name="Updates" type="Button" parent="Settings/Buttons"]
+layout_mode = 2
+text = "System Update"
 
 [node name="Poweroff" type="Button" parent="Settings/Buttons"]
 layout_mode = 2
@@ -864,9 +864,9 @@ textBox = NodePath("../Settings/Internet/Popup/PassField")
 [connection signal="timeout" from="Game_select/Timer" to="Game_select" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="Settings/AnimationPlayer" to="Settings" method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="Settings/Buttons/Internet" to="Settings" method="_on_internet_pressed"]
-[connection signal="pressed" from="Settings/Buttons/Updates" to="Settings" method="_on_updates_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Date&Time" to="Settings" method="_on_date_time_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Background" to="Settings" method="_on_background_pressed"]
+[connection signal="pressed" from="Settings/Buttons/Updates" to="Settings" method="_on_updates_pressed"]
 [connection signal="pressed" from="Settings/Buttons/Poweroff" to="Settings" method="_on_poweroff_pressed"]
 [connection signal="pressed" from="Settings/Internet/Popup/Back" to="Settings/Internet" method="_on_back_pressed"]
 [connection signal="focus_entered" from="Settings/Internet/Popup/PassField" to="VirtualKeyboard" method="_on_focus_entered"]
