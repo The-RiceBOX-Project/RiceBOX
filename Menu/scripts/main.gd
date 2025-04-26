@@ -59,16 +59,15 @@ func _on_arduino_data_recieved(myString: String) -> void:
 			event.pressed = false
 			Input.parse_input_event(event)
 		previous_click = click
-	
-	if controller_ready:
+		
 		if show and (previous_show == 0):
-			var event = InputEventKey.new()
-			event.keycode = KEY_CTRL
+			var event := InputEventAction.new()
+			event.action = "show"
 			event.pressed = true
 			Input.parse_input_event(event)
 			
-			event = InputEventKey.new()
-			event.keycode = KEY_CTRL
+			event = InputEventAction.new()
+			event.action = "show"
 			event.pressed = false
 			Input.parse_input_event(event)
 		previous_show = show
