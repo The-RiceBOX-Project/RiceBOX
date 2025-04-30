@@ -1,7 +1,7 @@
 Welcome to the RiceBOX Project
 
 # What is RiceBOX
-RiceBOX is a gaming console me for TUESFest 2025
+RiceBOX is a gaming console made for TUESFest 2025
 
 ## The project currently consist
 1. A controller: https://github.com/The-RiceBOX-Project/RiceBOX-Controller
